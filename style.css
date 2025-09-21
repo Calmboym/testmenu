@@ -104,14 +104,14 @@ body{
 /* === اصلاح .item و تصویر برای هم‌ارتفاع شدن با ردیف === */
 .item{
   display:flex;
-  align-items:stretch;      /* مهم: اجازه می‌دهد آیتم‌ها (عکس) کل ارتفاع ردیف را بگیرند */
+  align-items:center;      /* مهم: اجازه می‌دهد آیتم‌ها (عکس) کل ارتفاع ردیف را بگیرند */
   gap:12px;
   background:linear-gradient(180deg,#252e34,#14191c);
   padding:12px;             /* می‌توانی این را تغییر دهی */
   border-radius:14px;
   box-shadow:0 10px 26px rgba(0,0,0,0.45);
   /* حداقل ارتفاع نگه می‌دارد ولی اجازه می‌دهد در صورت نیاز ارتفاع بیشتر شود */
-  min: height 110px;
+  min-height: 18vh;
   box-sizing:border-box;
 }
 
@@ -165,4 +165,5 @@ body{
   .title{font-size:16px}
   .category-bar{padding:10px}
 }
+
 
