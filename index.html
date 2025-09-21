@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>آتزورو — منوی دیجیتال</title>
+
+  <!-- Vazir font (cdn) — اختیاری؛ اگر می‌خواهی فونت دقیق‌تر باشه، این رو نگه دار -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <button class="back-btn" aria-hidden="true" onclick="history.back()">‹</button>
+      <div class="logo-area" onclick="goHome()" role="button" aria-label="بازگشت به صفحه اصلی">
+        <img src="images/logo.jpg" alt="لوگو آتزورو" class="logo">
+      </div>
+      <div class="menu-btn" aria-hidden="true">☰</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / Landing -->
+    <section id="home" class="hero">
+      <div class="hero-layer">
+        <img class="hero-logo" src="images/logo.jpg" alt="آتزورو لوگو">
+        <h1 class="cafe-name">آتزورو</h1>
+        <div class="cafe-name-en">azzurro</div>
+        <p class="tagline">آتزورو رنگی است از جنس آرامش و امید ؛ آبیِ ابدیِ آسمان</p>
+        <div class="address">آدرس: بین هنرستان ۱۷ و ۱۹</div>
+
+        <div class="hero-actions">
+          <a class="instagram" href="https://www.instagram.com/azzurro_takeaway?igsh=MWlibWh4N2kwNTFiMQ==" target="_blank" rel="noopener">اینستاگرام</a>
+          <button class="glass-btn" onclick="goMenu()">مشاهده منو فروشگاه</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories grid -->
+    <section id="categories" class="page categories-page" aria-label="دسته‌های منو">
+      <div class="categories-grid" id="categoriesGrid"></div>
+    </section>
+
+    <!-- Menu (category bar + slides) -->
+    <section id="menu" class="page menu-page">
+      <nav class="category-bar" id="categoryBar" aria-label="دسته‌ها"></nav>
+
+      <div class="slides-wrapper">
+        <div id="slides" class="slides" role="region" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- image zoom modal -->
+    <div id="modal" class="modal" onclick="closeModal()" aria-hidden="true">
+      <img id="modalImg" src="" alt="بزرگنمایی تصویر">
+    </div>
+
+  </main>
+
+  <footer class="site-footer">© آتزورو</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

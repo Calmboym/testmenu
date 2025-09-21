@@ -1,0 +1,167 @@
+/* ============== base ============== */
+*{box-sizing:border-box}
+:root{
+  --bg:#263b43;
+  --card:#4a637e;
+  --muted:#a8afb6;
+  --accent:#56a5fa; /* آبی آسمانی */
+  --glass: rgba(255,255,255,0.06);
+}
+body{
+  margin:0;
+  font-family: Vazir, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  direction: rtl;
+  background:var(--bg);
+  color:#fff;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== header ===== */
+.site-header{
+  position:fixed; top:0; right:0; left:0; height:64px; z-index:120;
+  background: rgba(3,6,10,0.55);
+  backdrop-filter: blur(6px);
+  display:flex; align-items:center; justify-content:center;
+}
+.header-inner{width:100%;max-width:980px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:12px}
+.logo-area{cursor:pointer}
+.logo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.06)}
+.back-btn,.menu-btn{position:absolute;top:18px;background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer}
+.back-btn{right:14px}
+.menu-btn{left:14px}
+
+/* ============== HERO (landing) ============== */
+.hero{
+  height:100vh; padding-top:64px;
+  background-image: linear-gradient(180deg, rgba(119, 170, 199, 0.66), rgba(17, 30, 44, 0.66)), url('images/hero.jpg');
+  background-size:cover; background-position:center;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-layer{max-width:920px;padding:36px;text-align:center}
+.hero-logo{width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 10px}
+.cafe-name{font-size:36px;margin:4px 0 0}
+.cafe-name-en{color:var(--muted);margin-top:6px}
+.tagline{color:var(--muted);margin-top:12px}
+.address{color:var(--muted);margin-top:10px}
+.hero-actions{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.instagram{background:var(--glass);padding:8px 12px;border-radius:10px;color:#fff;text-decoration:none}
+.glass-btn{padding:12px 18px;border-radius:12px;border:none;background:var(--glass);color:#fff;cursor:pointer}
+
+/* ============== Categories grid ============== */
+.categories-page{padding-top:92px}
+.categories-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:16px;max-width:980px;margin:0 auto}
+.cat-card{position:relative;border-radius:12px;overflow:hidden;background:var(--card);cursor:pointer;min-height:130px}
+.cat-card img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.82)}
+.cat-title{position:absolute;right:16px;bottom:12px;color:#fff;font-weight:800;text-shadow:0 6px 18px rgba(0,0,0,0.6)}
+
+/* ============== Menu slides & category bar ============== */
+.menu-page{padding-top:92px}
+
+/* نوار دسته‌بندی همیشه بالای اسلاید */
+.category-bar{
+  display:flex;gap:10px;overflow:auto;
+  padding:12px 14px;
+  scroll-snap-type:x mandatory;
+  align-items:center;
+  max-width:980px;
+  margin:0 auto;
+  position:sticky;
+  top:64px; /* درست زیر هدر */
+  background:var(--bg);
+  z-index:100;
+}
+.category-bar button{flex:none;padding:10px 14px;border-radius:999px;border:none;background:rgba(179, 17, 17, 0.03);color:#fff;cursor:pointer;white-space:nowrap;font-weight:700}
+.category-bar button.active{background:var(--accent);color:#042431;box-shadow:0 6px 20px rgba(77,163,255,0.12)}
+
+/* slides container */
+.slides-wrapper{max-width:980px;margin:8px auto 40px;position:relative;overflow:hidden;height:calc(100vh - 180px)}
+.slides{position:relative;width:100%;height:100%}
+.slide{
+  position:absolute;
+  left:100%;
+  top:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:all .45s ease;
+  padding:12px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+}
+.slide.active{left:0;opacity:1;z-index:3}
+.slide.prev{left:-100%;opacity:0}
+
+/* items list */
+.items{
+  flex:1;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:6px;
+}
+/* === اصلاح .item و تصویر برای هم‌ارتفاع شدن با ردیف === */
+.item{
+  display:flex;
+  align-items:center;      /* مهم: اجازه می‌دهد آیتم‌ها (عکس) کل ارتفاع ردیف را بگیرند */
+  gap:12px;
+  background:linear-gradient(180deg,#252e34,#14191c);
+  padding:12px;             /* می‌توانی این را تغییر دهی */
+  border-radius:14px;
+  box-shadow:0 10px 26px rgba(0,0,0,0.45);
+  /* حداقل ارتفاع نگه می‌دارد ولی اجازه می‌دهد در صورت نیاز ارتفاع بیشتر شود */
+  min: height 110px;
+  box-sizing:border-box;
+}
+
+/* تصویر: 30% عرض ردیف، ارتفاع 100% والد (هم‌ارتفاع با ردیف)، و حفظ نسبت با object-fit */
+.item img{
+  flex: 0 0 30%;           /* پایه 30% عرض (ثابت) — نسبت‌پذیر */
+  max-width:140px;         /* حداکثر عرض دلخواه */
+  aspect-ratio: 1/1;             /* **همان ارتفاع ردیف** */
+  object-fit:cover;        /* حفظ نسبت و پوشش کامل قاب */
+  border-radius:10px;
+  display:block;
+}
+
+/* متن متا — ارتفاع و چیدمان */
+.meta{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between; /* عنوان بالا، قیمت پایین */
+}
+
+/* تضمین اسکرول نرم در آیتم‌ها */
+.items{
+  -webkit-overflow-scrolling: touch;
+  overflow-y:auto;
+}
+
+.title{font-weight:800;font-size:18px; text-align:right}
+.desc{color:var(--muted);font-size:13px;margin-top:6px;text-align:right}
+.price{color:var(--accent);font-weight:800;margin-top:10px;text-align:left}
+
+/* modal zoom */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.88);display:none;align-items:center;justify-content:center;z-index:999}
+.modal img{max-width:94%;max-height:94%;border-radius:10px}
+
+/* footer */
+.site-footer{padding:18px;text-align:center;color:var(--muted)}
+
+/* ===== responsive ===== */
+@media (max-width:900px){
+  .categories-grid{grid-template-columns:repeat(2,1fr)}
+  .slides-wrapper{height:calc(100vh - 220px)}
+}
+@media (max-width:600px){
+  .hero-layer{padding:18px}
+  .cafe-name{font-size:28px}
+  .categories-grid{grid-template-columns:1fr}
+  .slides-wrapper{height:calc(100vh - 200px)}
+  .item{min-height:78px}
+  .item img{width:30%}
+  .title{font-size:16px}
+  .category-bar{padding:10px}
+}
