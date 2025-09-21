@@ -104,7 +104,7 @@ body{
 /* === اصلاح .item و تصویر برای هم‌ارتفاع شدن با ردیف === */
 .item{
   display:flex;
-  align-items:center;      /* مهم: اجازه می‌دهد آیتم‌ها (عکس) کل ارتفاع ردیف را بگیرند */
+  align-items:stretch;      /* مهم: اجازه می‌دهد آیتم‌ها (عکس) کل ارتفاع ردیف را بگیرند */
   gap:12px;
   background:linear-gradient(180deg,#252e34,#14191c);
   padding:12px;             /* می‌توانی این را تغییر دهی */
@@ -165,3 +165,4 @@ body{
   .title{font-size:16px}
   .category-bar{padding:10px}
 }
+
